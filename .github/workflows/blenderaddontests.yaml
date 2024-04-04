@@ -36,6 +36,10 @@ jobs:
           mkdir -p $ADDON_DIR
           cp -r ../BlendArMocap "$ADDON_DIR"
 
+      - name: List Contents of the Addon Directory
+          run: ls -la $ADDON_DIR
+          run: ls -la $ADDON_DIR/BlendArMocap
+
       - name: Enable Add-On and Run Tests
         run: |
           blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py

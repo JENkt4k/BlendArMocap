@@ -25,37 +25,5 @@ jobs:
 
       - name: Install Blender Modules
         run: |
-          BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
-          PYTHON_BIN="/home/runner/snap/blender/current/$BLENDER_VERSION/python/bin/python3.11"
-          "$PYTHON_BIN" -m ensurepip --upgrade
-          "$PYTHON_BIN" -m pip install opencv-python mediapipe
-          "$PYTHON_BIN" -m pip list
-
-      - name: Print Current Working Directory
-        run: pwd
-        
-      - name: List Contents of the Current Working Directory
-        run: ls -la
-
-      - name: Copy Add-On to Blender's Add-On Directory
-        run: |
-          BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
-          ADDON_DIR="/home/runner/snap/blender/current/.config/blender/$BLENDER_VERSION/scripts/addons"
-
-      - name: Define Add-On Directory
-        run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
-
-      - name: Copy Add-On to Blender's Add-On Directory
-        run: |
-          mkdir -p $ADDON_DIR/BlendArMocap
-          cp -r . $ADDON_DIR/BlendArMocap
-
-
-      - name: List Contents of the Addon Directory
-        run: | 
-          ls -la $ADDON_DIR
-          ls -la "$ADDON_DIR"/BlendArMocap
-
-      - name: Enable Add-On and Run Tests
-        run: |
-          blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py
+          PYTHON_BIN="/home/runner/snap/blender/current"
+          ls -la "$ADDON_DIR"

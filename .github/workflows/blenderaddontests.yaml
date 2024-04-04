@@ -5,23 +5,30 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    container: linuxserver/blender:4.1.0
     steps:
       - uses: actions/checkout@v2
-      
-      # - name: Set up Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: '3.7'
-
-      - name: Install Blender
+      - name: Run Blender Operations
         run: |
-          sudo snap install blender --classic
-          which blender
-          ls -la /snap/bin/blender
-          echo "Python in snap?"
-          ls -la /snap/bin
-          echo "Python share"
-          ls -la /usr/share
+          blender -b --python-expr " -m pip install opencv-python mediapipe"
+
+
+      #   blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py
+      
+      # # - name: Set up Python
+      # #   uses: actions/setup-python@v2
+      # #   with:
+      # #     python-version: '3.7'
+
+      # - name: Install Blender
+      #   run: |
+      #     sudo snap install blender --classic
+      #     which blender
+      #     ls -la /snap/bin/blender
+      #     echo "Python in snap?"
+      #     ls -la /snap/bin
+      #     echo "Python share"
+      #     ls -la /usr/share
 
       # - name: Install Blender Modules
       #   run: |

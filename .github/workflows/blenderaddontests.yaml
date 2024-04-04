@@ -37,9 +37,9 @@ jobs:
           cp -r ../BlendArMocap "$ADDON_DIR"
 
       - name: List Contents of the Addon Directory
-          run: | 
-            ls -la $ADDON_DIR
-            ls -la $ADDON_DIR/BlendArMocap
+        run: | 
+          ls -la $ADDON_DIR
+          ls -la $ADDON_DIR/BlendArMocap
 
       - name: Enable Add-On and Run Tests
         run: |

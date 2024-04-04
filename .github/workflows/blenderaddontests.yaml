@@ -19,10 +19,9 @@ jobs:
           which blender
           ls -la /snap/bin/blender
           echo "Python in snap?"
-          ls -la /usr/bin/snap
-          echo "Python in snap?"
           ls -la /snap/bin
-          ls -la /usr/share/blender
+          echo "Python share"
+          ls -la /usr/share
 
       # - name: Install Blender Modules
       #   run: |

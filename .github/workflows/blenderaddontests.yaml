@@ -25,8 +25,8 @@ jobs:
 
       - name: Copy Add-On to Blender's Add-On Directory
         run: |
-          # Assuming Blender version 2.93 for the directory path
-          ADDON_DIR=$(blender -b --python-expr "import bpy; print(bpy.utils.user_resource('SCRIPTS', 'addons'))" | tail -1)
+          BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
+          ADDON_DIR="/home/runner/snap/blender/current/.config/blender/$BLENDER_VERSION/scripts/addons"
           cp -r BlendArMocap "$ADDON_DIR"
 
       - name: Enable Add-On and Run Tests

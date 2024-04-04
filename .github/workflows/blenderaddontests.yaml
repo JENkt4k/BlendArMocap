@@ -1,4 +1,4 @@
-name: Blender Add-On Tests
+name: Blender Add-On CI
 
 on: [push, pull_request]
 
@@ -6,20 +6,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-opencv
+          pip install mediapipe
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
+      - name: Install Blender
+        run: |
+          sudo snap install blender --classic
 
-    - name: Install Blender
-      run: |
-        sudo snap install blender --classic
+      - name: Copy Add-On to Blender's Add-On Directory
+        run: |
+          # Assuming Blender version 2.93 for the directory path
+          ADDON_DIR=$(blender -b --python-expr "import bpy; print(bpy.utils.user_resource('SCRIPTS', 'addons'))" | tail -1)
+          cp -r BlendArMocap "$ADDON_DIR"
 
-    - name: Run Tests
-      run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
-        blender -b --python src/cgt_tests/test_cgt_math.py
+      - name: Enable Add-On and Run Tests
+        run: |
+          blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py

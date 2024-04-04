@@ -16,6 +16,7 @@ jobs:
       - name: Install Blender
         run: |
           sudo snap install blender --classic
+          which blender
 
       - name: Install Blender Modules
         run: |

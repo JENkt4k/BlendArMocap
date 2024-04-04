@@ -33,9 +33,15 @@ jobs:
         run: |
           BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
           ADDON_DIR="/home/runner/snap/blender/current/.config/blender/$BLENDER_VERSION/scripts/addons"
-          mkdir -p $ADDON_DIR
-          mkdir -p "$ADDON_DIR"/BlendArMocap
-          cp -r ../BlendArMocap "$ADDON_DIR"/BlendArMocap
+
+      - name: Define Add-On Directory
+        run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
+
+      - name: Copy Add-On to Blender's Add-On Directory
+        run: |
+          mkdir -p $ADDON_DIR/BlendArMocap
+          cp -r . $ADDON_DIR/BlendArMocap
+
 
       - name: List Contents of the Addon Directory
         run: | 

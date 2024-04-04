@@ -33,6 +33,7 @@ jobs:
         run: |
           BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
           ADDON_DIR="/home/runner/snap/blender/current/.config/blender/$BLENDER_VERSION/scripts/addons"
+          mkdir -p $ADDON_DIR
           cp -r ../BlendArMocap "$ADDON_DIR"
 
       - name: Enable Add-On and Run Tests

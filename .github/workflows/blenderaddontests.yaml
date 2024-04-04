@@ -26,4 +26,4 @@ jobs:
       - name: Install Blender Modules
         run: |
           PYTHON_BIN="/home/runner/snap/blender/current"
-          ls -la "$ADDON_DIR"
+          ls -la "$PYTHON_BIN"

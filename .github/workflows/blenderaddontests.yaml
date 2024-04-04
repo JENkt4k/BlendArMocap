@@ -26,7 +26,7 @@ jobs:
       - name: Install Blender Modules
         run: |
           BLENDER_VERSION=$(blender --version | head -n 1 | grep -oP '\d+\.\d+')
-          PYTHON_BIN="/home/runner/snap/blender/current/.config/blender/$BLENDER_VERSION/python/bin/python3.11"
+          PYTHON_BIN="/home/runner/snap/blender/current/$BLENDER_VERSION/python/bin/python3.11"
           "$PYTHON_BIN" -m ensurepip --upgrade
           "$PYTHON_BIN" -m pip install opencv-python mediapipe
           "$PYTHON_BIN" -m pip list

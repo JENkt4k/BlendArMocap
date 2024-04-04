@@ -19,8 +19,9 @@ jobs:
 
       - name: Install Blender Modules
         run: |
-          PYTHON_BIN="/opt/hostedtoolcache/Python/3.7.17/x64"
-          ls -la "$PYTHON_BIN"
+          PYTHON_BIN="/opt/hostedtoolcache/Python/3.7.17/x64/python"
+          PYTHON_DIR="/opt/hostedtoolcache/Python/3.7.17/x64"
+          ls -la "$PYTHON_DIR"
           "$PYTHON_BIN" -m ensurepip --upgrade
           "$PYTHON_BIN" -m pip install opencv-python mediapipe
           "$PYTHON_BIN" -m pip list

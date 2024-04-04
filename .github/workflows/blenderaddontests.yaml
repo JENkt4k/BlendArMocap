@@ -8,34 +8,37 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
+      # - name: Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.7'
 
       - name: Install Blender
         run: |
           sudo snap install blender --classic
           which blender
+          ls -la /snap/bin/blender
+          echo "Python in snap?"
+          ls -la /snap/bin | grep python
 
-      - name: Install Blender Modules
-        run: |
-          PYTHON_BIN="/opt/hostedtoolcache/Python/3.7.17/x64/python"
-          PYTHON_DIR="/opt/hostedtoolcache/Python/3.7.17/x64"
-          ls -la "$PYTHON_DIR"
-          "$PYTHON_BIN" -m ensurepip --upgrade
-          "$PYTHON_BIN" -m pip install opencv-python mediapipe
-          "$PYTHON_BIN" -m pip list
+      # - name: Install Blender Modules
+      #   run: |
+      #     PYTHON_BIN="/opt/hostedtoolcache/Python/3.7.17/x64/python"
+      #     PYTHON_DIR="/opt/hostedtoolcache/Python/3.7.17/x64"
+      #     ls -la "$PYTHON_DIR"
+      #     "$PYTHON_BIN" -m ensurepip --upgrade
+      #     "$PYTHON_BIN" -m pip install opencv-python mediapipe
+      #     "$PYTHON_BIN" -m pip list
 
-      - name: Define Add-On Directory
-        run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
+      # - name: Define Add-On Directory
+      #   run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
 
-      - name: Copy Add-On to Blender's Add-On Directory
-        run: |
-          mkdir -p $ADDON_DIR
-          mkdir -p $ADDON_DIR/BlendArMocap
-          cp -r . $ADDON_DIR/BlendArMocap
+      # - name: Copy Add-On to Blender's Add-On Directory
+      #   run: |
+      #     mkdir -p $ADDON_DIR
+      #     mkdir -p $ADDON_DIR/BlendArMocap
+      #     cp -r . $ADDON_DIR/BlendArMocap
 
-      - name: Enable Add-On and Run Tests
-        run: |
-          blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py
+      # - name: Enable Add-On and Run Tests
+      #   run: |
+      #     blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py

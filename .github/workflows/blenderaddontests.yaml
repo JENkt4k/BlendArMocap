@@ -25,3 +25,16 @@ jobs:
           "$PYTHON_BIN" -m ensurepip --upgrade
           "$PYTHON_BIN" -m pip install opencv-python mediapipe
           "$PYTHON_BIN" -m pip list
+
+      - name: Define Add-On Directory
+        run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
+
+      - name: Copy Add-On to Blender's Add-On Directory
+        run: |
+          mkdir -p $ADDON_DIR
+          mkdir -p $ADDON_DIR/BlendArMocap
+          cp -r . $ADDON_DIR/BlendArMocap
+
+      - name: Enable Add-On and Run Tests
+        run: |
+          blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py

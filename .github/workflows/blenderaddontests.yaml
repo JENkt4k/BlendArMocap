@@ -22,7 +22,7 @@ jobs:
           ls -la /usr/bin/snap
           echo "Python in snap?"
           ls -la /snap/bin
-          ls -la /usr/share/blender/4.1/
+          ls -la /usr/share/blender
 
       # - name: Install Blender Modules
       #   run: |

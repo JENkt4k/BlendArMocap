@@ -1,0 +1,24 @@
+name: Blender Add-On Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    - name: Install Blender
+      run: |
+        sudo snap install blender --classic
+
+    - name: Run Tests
+      run: |
+        blender -b --python src/cgt_tests/test_cgt_math.py

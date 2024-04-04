@@ -12,12 +12,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
-      
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-opencv
-          pip install mediapipe
 
       - name: Install Blender
         run: |
@@ -25,5 +19,5 @@ jobs:
 
       - name: Install Blender Modules
         run: |
-          PYTHON_BIN="/home/runner/snap/blender/current"
+          PYTHON_BIN="/opt/hostedtoolcache/Python/3.7.17/x64"
           ls -la "$PYTHON_BIN"

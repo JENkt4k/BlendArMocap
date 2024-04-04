@@ -21,4 +21,5 @@ jobs:
 
     - name: Run Tests
       run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
         blender -b --python src/cgt_tests/test_cgt_math.py

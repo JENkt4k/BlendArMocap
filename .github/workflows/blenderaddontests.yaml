@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Define Add-On Directory
-      run: echo "ADDON_DIR=/usr/share/blender/scripts/add_ons" >> $GITHUB_ENV
+      run: echo "ADDON_DIR=/usr/share/blender/scripts/addons" >> $GITHUB_ENV
 
     - name: Copy Add-On to Blender's Add-On Directory
       run: |

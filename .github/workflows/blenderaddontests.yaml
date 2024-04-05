@@ -3,17 +3,42 @@ name: Blender Add-On CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  blender-job:
     runs-on: ubuntu-latest
-    container: linuxserver/blender:4.1.0
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: Run Blender Operations
-        run: |
-          blender -b --python-expr " -m pip install opencv-python mediapipe"
+    - uses: actions/checkout@v2
+    
+    - name: Install Blender
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y blender
+        where blender
+        ls -la
 
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     container: linuxserver/blender:4.1.0
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Run Blender Operations
+#         run: |
+#           blender/4.1/python/bin/python3.11 -m pip install opencv-python mediapipe
+#           ls -la
 
-      #   blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py
+#       - name: Define Add-On Directory
+#         run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
+
+#       - name: Copy Add-On to Blender's Add-On Directory
+#         run: |
+#           mkdir -p $ADDON_DIR
+#           mkdir -p $ADDON_DIR/BlendArMocap
+#           cp -r . $ADDON_DIR/BlendArMocap
+
+#       - name: Enable Add-On and Run Tests
+#         run: |
+#           blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py      
       
       # # - name: Set up Python
       # #   uses: actions/setup-python@v2
@@ -39,15 +64,3 @@ jobs:
       #     "$PYTHON_BIN" -m pip install opencv-python mediapipe
       #     "$PYTHON_BIN" -m pip list
 
-      # - name: Define Add-On Directory
-      #   run: echo "ADDON_DIR=$HOME/.config/blender/4.1/scripts/addons" >> $GITHUB_ENV
-
-      # - name: Copy Add-On to Blender's Add-On Directory
-      #   run: |
-      #     mkdir -p $ADDON_DIR
-      #     mkdir -p $ADDON_DIR/BlendArMocap
-      #     cp -r . $ADDON_DIR/BlendArMocap
-
-      # - name: Enable Add-On and Run Tests
-      #   run: |
-      #     blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py

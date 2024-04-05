@@ -17,6 +17,10 @@ jobs:
         mkdir -p $ADDON_DIR
         mkdir -p $ADDON_DIR/BlendArMocap
         cp -r . $ADDON_DIR/BlendArMocap
+        which python
+        whereis python
+        which pip
+        whereis pip
     
     - name: Install Blender
       run: |

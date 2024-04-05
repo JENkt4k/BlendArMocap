@@ -11,7 +11,7 @@ python_exe = os.path.join(sys.prefix, 'bin', 'python')
 py_lib = os.path.join(sys.prefix, 'bin','pip')
 
 #install opencv
-subprocess.call([python_exe, py_lib, "install", "opencv_python"])
+subprocess.call([python_exe, py_lib, "install", "opencv_contrib_python"])
 #install mediapipe
 subprocess.call([python_exe, py_lib, "install", "mediapipe"])
 

@@ -3,7 +3,7 @@ import sys
 import os
 
 #path to python.exe
-python_exe = os.path.join(sys.prefix, 'bin', 'python.exe')
+python_exe = os.path.join(sys.prefix, 'bin', 'python')
 py_lib = os.path.join(sys.prefix, 'lib', 'site-packages','pip')
 
 #install opencv

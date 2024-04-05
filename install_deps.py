@@ -3,20 +3,21 @@ import sys
 import os
 import bpy
 
-bpy.ops.preferences.addon_enable(module='BlendArMocap')
-bpy.ops.wm.save_userpref()
 
 #path to python.exe
 python_exe = os.path.join(sys.prefix, 'bin', 'python')
 py_lib = os.path.join(sys.prefix, 'bin','pip')
 
 #install opencv
+subprocess.call([python_exe, py_lib, "install", "opencv"])
 subprocess.call([python_exe, py_lib, "install", "opencv_contrib_python"])
 #install mediapipe
 subprocess.call([python_exe, py_lib, "install", "mediapipe"])
 
 subprocess.call([python_exe, py_lib, "install", "numpy"])
 
+bpy.ops.preferences.addon_enable(module='BlendArMocap')
+bpy.ops.wm.save_userpref()
 
 # import subprocess
 # import sys

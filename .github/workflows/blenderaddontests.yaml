@@ -8,6 +8,15 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+
+    - name: Define Add-On Directory
+      run: echo "ADDON_DIR=/usr/share/blender/scripts/add_ons" >> $GITHUB_ENV
+
+    - name: Copy Add-On to Blender's Add-On Directory
+      run: |
+        mkdir -p $ADDON_DIR
+        mkdir -p $ADDON_DIR/BlendArMocap
+        cp -r . $ADDON_DIR/BlendArMocap
     
     - name: Install Blender
       run: |
@@ -17,9 +26,10 @@ jobs:
         whereis blender
         ls -la  /usr/share/blender/scripts
         ls -la  /usr/share/blender
+        blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py      
 
 
-# jobs:
+# jobs: #bpy.ops.preferences.addon_enable(module='BlendArMocap')
 #   test:
 #     runs-on: ubuntu-latest
 #     container: linuxserver/blender:4.1.0

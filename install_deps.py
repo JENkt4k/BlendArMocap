@@ -1,6 +1,10 @@
 import subprocess
 import sys
 import os
+import bpy
+
+bpy.ops.preferences.addon_enable(module='BlendArMocap')
+bpy.ops.wm.save_userpref()
 
 #path to python.exe
 python_exe = os.path.join(sys.prefix, 'bin', 'python')

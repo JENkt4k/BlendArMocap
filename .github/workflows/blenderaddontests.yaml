@@ -36,7 +36,9 @@ jobs:
         whereis blender
         ls -la  /usr/share/blender/scripts
         ls -la  /usr/share/blender
-        blender -b --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()" --python src/cgt_tests/test_cgt_math.py      
+        blender -b --python src/cgt_tests/test_cgt_math.py      
+        
+# --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()"
 
 
 # jobs: #bpy.ops.preferences.addon_enable(module='BlendArMocap')

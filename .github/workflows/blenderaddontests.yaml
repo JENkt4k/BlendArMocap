@@ -22,6 +22,12 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y blender
+
+    - name: Install Dependencies with Blender's Python
+      run: blender -b --python install_deps.py
+
+    - name: Enable Add-On and Run Tests
+      run: |
         which blender
         whereis blender
         ls -la  /usr/share/blender/scripts

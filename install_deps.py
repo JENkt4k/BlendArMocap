@@ -15,6 +15,8 @@ subprocess.call([python_exe, py_lib, "install", "opencv_python"])
 #install mediapipe
 subprocess.call([python_exe, py_lib, "install", "mediapipe"])
 
+subprocess.call([python_exe, py_lib, "install", "numpy"])
+
 
 # import subprocess
 # import sys

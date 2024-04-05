@@ -14,7 +14,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y blender
         which blender
-        ls -la
+        whereis blender
+        ls -la  /usr/share/blender/scripts
+        ls -la  /usr/share/blender
+
 
 # jobs:
 #   test:

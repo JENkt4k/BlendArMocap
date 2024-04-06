@@ -1,4 +1,4 @@
-from ..cgt_core.cgt_calculators_nodes.cgt_math import *
+from BlendArMocap.src.cgt_core.cgt_calculators_nodes.cgt_math import *
 import unittest
 import math
 

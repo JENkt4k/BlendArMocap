@@ -1,6 +1,8 @@
 from BlendArMocap.src.cgt_core.cgt_calculators_nodes.cgt_math import *
 import unittest
 import math
+import sys
+import argparse
 
 
 class TestMathutils(unittest.TestCase):
@@ -189,5 +191,15 @@ class TestMathutils(unittest.TestCase):
             self.assertEqual(a, b)
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
+
+
+if __name__ == "__main__":
+    sys.argv = [__file__] + (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
+    # Parser is only needed when you need to pass command-line options to your script.
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--testdir", required=True)
+    args, remaining = parser.parse_known_args()
+    # if you do not need a parser, then skip until here. The Next line is important:
+    unittest.main(argv=sys.argv[0:1] + remaining)

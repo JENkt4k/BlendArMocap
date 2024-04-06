@@ -37,5 +37,5 @@ jobs:
 
     - name: Enable Add-On and Run Tests
       run: |
-        /opt/blender/blender --background --python src/cgt_tests/test_cgt_math.py  -- --verbose --testdir src/cgt_tests/
+        /opt/blender/blender -noaudio --background --python src/cgt_tests/test_cgt_math.py  -- --verbose --testdir src/cgt_tests/
 

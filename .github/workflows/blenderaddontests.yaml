@@ -17,6 +17,10 @@ jobs:
         mkdir -p $ADDON_DIR
         mkdir -p $ADDON_DIR/BlendArMocap
         cp -r . $ADDON_DIR/BlendArMocap
+        echo "done copy"
+        ls -la  $ADDON_DIR
+        ls -la  $ADDON_DIR/BlendArMocap
+        echo "done list"
         which python
         whereis python
         which pip
@@ -30,12 +34,18 @@ jobs:
     - name: Install Dependencies with Blender's Python
       run: blender -b --python install_deps.py
 
-    - name: Enable Add-On and Run Tests
+    - name: Enable Add-On 
+      run: blender -b --python enable.py
+
+    - name: Debug
       run: |
         which blender
         whereis blender
         ls -la  /usr/share/blender/scripts
         ls -la  /usr/share/blender
+
+    - name: Run Tests
+      run: |
         blender -b --python src/cgt_tests/test_cgt_math.py      
         
 # --python-expr "import bpy; bpy.ops.preferences.addon_enable(module='BlendArMocap'); bpy.ops.wm.save_userpref()"

@@ -1,7 +1,6 @@
 import subprocess
 import sys
 import os
-import bpy
 
 
 #path to python.exe
@@ -16,8 +15,6 @@ subprocess.call([python_exe, py_lib, "install", "mediapipe"])
 
 subprocess.call([python_exe, py_lib, "install", "numpy"])
 
-bpy.ops.preferences.addon_enable(module='BlendArMocap')
-bpy.ops.wm.save_userpref()
 
 # import subprocess
 # import sys
